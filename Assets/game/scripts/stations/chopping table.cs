@@ -6,14 +6,16 @@ namespace YesChef.Stations
 {
     public class ChoppingTable : MonoBehaviour, IInteractable
     {
+        [Header("Ingredient Placement")]
+        [SerializeField]
+        private Transform ingredientPoint;
+
         private IngredientInstance currentIngredient;
         private float remainingTime;
 
-        public bool IsBusy =>
-            currentIngredient != null;
+        public bool IsBusy => currentIngredient != null;
 
-        public float RemainingTime =>
-            remainingTime;
+        public float RemainingTime => remainingTime;
 
         public bool CanInteract(PlayerController player)
         {
@@ -22,23 +24,21 @@ namespace YesChef.Stations
                 return false;
             }
 
-            // Player can place an ingredient on the table.
-            if (!IsBusy && player.Inventory.HasIngredient)
+            // Take finished vegetable.
+            if (IsBusy)
+            {
+                return remainingTime <= 0f &&
+                       player.Inventory.IsEmpty;
+            }
+
+            // Place vegetable for chopping.
+            if (player.Inventory.HasIngredient)
             {
                 IngredientInstance ingredient =
                     player.Inventory.HeldIngredient;
 
-                return ingredient.Type ==
-                       IngredientType.Vegetable &&
+                return ingredient.Type == IngredientType.Vegetable &&
                        !ingredient.IsPrepared;
-            }
-
-            // Player can collect finished ingredient.
-            if (IsBusy &&
-                remainingTime <= 0f &&
-                player.Inventory.IsEmpty)
-            {
-                return true;
             }
 
             return false;
@@ -74,19 +74,22 @@ namespace YesChef.Stations
             remainingTime =
                 currentIngredient.Definition.PreparationTime;
 
-            currentIngredient.transform.SetParent(transform);
+            currentIngredient.transform.SetParent(
+                ingredientPoint != null
+                    ? ingredientPoint
+                    : transform
+            );
+
             currentIngredient.transform.localPosition =
-                Vector3.up * 0.5f;
+                Vector3.zero;
+
+            currentIngredient.transform.localRotation =
+                Quaternion.identity;
         }
 
         private void Update()
         {
-            if (!IsBusy)
-            {
-                return;
-            }
-
-            if (remainingTime <= 0f)
+            if (!IsBusy || remainingTime <= 0f)
             {
                 return;
             }
@@ -114,7 +117,23 @@ namespace YesChef.Stations
 
             ingredient.transform.SetParent(null);
 
-            player.Inventory.TryPickup(ingredient);
+            bool pickedUp =
+                player.Inventory.TryPickup(ingredient);
+
+            if (!pickedUp)
+            {
+                // Put it back if player's hand became unavailable.
+                currentIngredient = ingredient;
+
+                ingredient.transform.SetParent(
+                    ingredientPoint != null
+                        ? ingredientPoint
+                        : transform
+                );
+
+                ingredient.transform.localPosition =
+                    Vector3.zero;
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using YesChef.Ingredients;
 using YesChef.Player;
@@ -6,25 +7,62 @@ namespace YesChef.Stations
 {
     public class Stove : MonoBehaviour, IInteractable
     {
-        [System.Serializable]
+        [Serializable]
         private class CookingSlot
         {
-            public Transform visualPoint;
+            [SerializeField]
+            private Transform ingredientPoint;
 
-            [HideInInspector]
-            public IngredientInstance ingredient;
+            private IngredientInstance ingredient;
+            private float remainingTime;
 
-            [HideInInspector]
-            public float remainingTime;
+            public Transform IngredientPoint => ingredientPoint;
 
-            public bool IsEmpty =>
-                ingredient == null;
+            public IngredientInstance Ingredient => ingredient;
+
+            public float RemainingTime => remainingTime;
+
+            public bool IsEmpty => ingredient == null;
 
             public bool IsFinished =>
-                ingredient != null &&
-                remainingTime <= 0f;
+                ingredient != null && remainingTime <= 0f;
+
+            public void Place(IngredientInstance newIngredient)
+            {
+                ingredient = newIngredient;
+
+                remainingTime =
+                    newIngredient.Definition.PreparationTime;
+            }
+
+            public IngredientInstance Remove()
+            {
+                IngredientInstance result = ingredient;
+
+                ingredient = null;
+                remainingTime = 0f;
+
+                return result;
+            }
+
+            public void Process(float deltaTime)
+            {
+                if (ingredient == null || remainingTime <= 0f)
+                {
+                    return;
+                }
+
+                remainingTime -= deltaTime;
+
+                if (remainingTime <= 0f)
+                {
+                    remainingTime = 0f;
+                    ingredient.Prepare();
+                }
+            }
         }
 
+        [Header("Cooking Slots")]
         [SerializeField]
         private CookingSlot[] slots = new CookingSlot[2];
 
@@ -35,28 +73,25 @@ namespace YesChef.Stations
                 return false;
             }
 
-            // Player can place raw meat.
+            // Player is holding something.
             if (player.Inventory.HasIngredient)
             {
                 IngredientInstance ingredient =
                     player.Inventory.HeldIngredient;
 
+                // Only raw meat can be placed here.
                 if (ingredient.Type != IngredientType.Meat ||
                     ingredient.IsPrepared)
                 {
                     return false;
                 }
 
-                return FindEmptySlot() != null;
+                return HasEmptySlot();
             }
 
-            // Player can collect cooked meat.
-            if (player.Inventory.IsEmpty)
-            {
-                return FindFinishedSlot() != null;
-            }
-
-            return false;
+            // Player has empty hands.
+            // Allow collecting cooked meat.
+            return FindFinishedSlot() != null;
         }
 
         public void Interact(PlayerController player)
@@ -76,6 +111,17 @@ namespace YesChef.Stations
             }
         }
 
+        private void Update()
+        {
+            foreach (CookingSlot slot in slots)
+            {
+                if (slot != null)
+                {
+                    slot.Process(Time.deltaTime);
+                }
+            }
+        }
+
         private void PlaceMeat(PlayerController player)
         {
             CookingSlot slot = FindEmptySlot();
@@ -85,47 +131,24 @@ namespace YesChef.Stations
                 return;
             }
 
-            IngredientInstance ingredient =
+            IngredientInstance meat =
                 player.Inventory.RemoveIngredient();
 
-            if (ingredient == null)
+            if (meat == null)
             {
                 return;
             }
 
-            slot.ingredient = ingredient;
-            slot.remainingTime =
-                ingredient.Definition.PreparationTime;
+            slot.Place(meat);
 
-            ingredient.transform.SetParent(
-                slot.visualPoint != null
-                    ? slot.visualPoint
-                    : transform
+            Transform point = slot.IngredientPoint;
+
+            meat.transform.SetParent(
+                point != null ? point : transform
             );
 
-            ingredient.transform.localPosition =
-                Vector3.zero;
-        }
-
-        private void Update()
-        {
-            foreach (CookingSlot slot in slots)
-            {
-                if (slot == null ||
-                    slot.ingredient == null ||
-                    slot.remainingTime <= 0f)
-                {
-                    continue;
-                }
-
-                slot.remainingTime -= Time.deltaTime;
-
-                if (slot.remainingTime <= 0f)
-                {
-                    slot.remainingTime = 0f;
-                    slot.ingredient.Prepare();
-                }
-            }
+            meat.transform.localPosition = Vector3.zero;
+            meat.transform.localRotation = Quaternion.identity;
         }
 
         private void CollectMeat(PlayerController player)
@@ -137,14 +160,37 @@ namespace YesChef.Stations
                 return;
             }
 
-            IngredientInstance ingredient =
-                slot.ingredient;
+            IngredientInstance meat = slot.Remove();
 
-            slot.ingredient = null;
+            if (meat == null)
+            {
+                return;
+            }
 
-            ingredient.transform.SetParent(null);
+            meat.transform.SetParent(null);
 
-            player.Inventory.TryPickup(ingredient);
+            bool pickedUp =
+                player.Inventory.TryPickup(meat);
+
+            if (!pickedUp)
+            {
+                // If pickup fails, put the meat back into the slot.
+                slot.Place(meat);
+
+                meat.transform.SetParent(
+                    slot.IngredientPoint != null
+                        ? slot.IngredientPoint
+                        : transform
+                );
+
+                meat.transform.localPosition = Vector3.zero;
+                meat.transform.localRotation = Quaternion.identity;
+            }
+        }
+
+        private bool HasEmptySlot()
+        {
+            return FindEmptySlot() != null;
         }
 
         private CookingSlot FindEmptySlot()

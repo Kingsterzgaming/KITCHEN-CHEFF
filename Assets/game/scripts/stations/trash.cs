@@ -1,4 +1,5 @@
 using UnityEngine;
+using YesChef.Ingredients;
 using YesChef.Player;
 
 namespace YesChef.Stations
@@ -18,7 +19,7 @@ namespace YesChef.Stations
                 return;
             }
 
-            var ingredient =
+            IngredientInstance ingredient =
                 player.Inventory.RemoveIngredient();
 
             if (ingredient != null)

@@ -7,19 +7,29 @@ namespace YesChef.Ingredients
         private IngredientDefinition definition;
         private IngredientState state;
 
+        private IngredientVisual visual;
+
         public IngredientDefinition Definition => definition;
+
         public IngredientType Type => definition.Type;
+
         public IngredientState State => state;
 
         public bool IsPrepared =>
             state == IngredientState.Prepared;
+
+        private void Awake()
+        {
+            visual = GetComponent<IngredientVisual>();
+        }
 
         public void Initialize(IngredientDefinition ingredientDefinition)
         {
             if (ingredientDefinition == null)
             {
                 Debug.LogError(
-                    "Cannot initialize IngredientInstance without a definition.",
+                    $"IngredientInstance on {gameObject.name} " +
+                    "received a null definition.",
                     this
                 );
 
@@ -28,6 +38,8 @@ namespace YesChef.Ingredients
 
             definition = ingredientDefinition;
             state = IngredientState.Raw;
+
+            UpdateVisual();
         }
 
         public void Prepare()
@@ -42,7 +54,22 @@ namespace YesChef.Ingredients
                 return;
             }
 
+            if (IsPrepared)
+            {
+                return;
+            }
+
             state = IngredientState.Prepared;
+
+            UpdateVisual();
+        }
+
+        private void UpdateVisual()
+        {
+            if (visual != null)
+            {
+                visual.SetPrepared(IsPrepared);
+            }
         }
     }
 }

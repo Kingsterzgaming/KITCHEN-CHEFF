@@ -6,9 +6,16 @@ namespace YesChef.Stations
 {
     public class Refrigerator : MonoBehaviour, IInteractable
     {
+        [System.Serializable]
+        private class IngredientEntry
+        {
+            public IngredientDefinition definition;
+            public IngredientInstance prefab;
+        }
+
         [Header("Available Ingredients")]
         [SerializeField]
-        private IngredientDefinition[] ingredients;
+        private IngredientEntry[] ingredients;
 
         [Header("Spawn")]
         [SerializeField]
@@ -16,9 +23,17 @@ namespace YesChef.Stations
 
         public bool CanInteract(PlayerController player)
         {
-            return player != null &&
-                   player.Inventory.IsEmpty &&
-                   ingredients != null &&
+            if (player == null)
+            {
+                return false;
+            }
+
+            if (!player.Inventory.IsEmpty)
+            {
+                return false;
+            }
+
+            return ingredients != null &&
                    ingredients.Length > 0;
         }
 
@@ -29,11 +44,25 @@ namespace YesChef.Stations
                 return;
             }
 
-            IngredientDefinition definition =
-                ingredients[Random.Range(0, ingredients.Length)];
+            IngredientEntry entry = GetRandomIngredient();
+
+            if (entry == null || entry.prefab == null)
+            {
+                Debug.LogError(
+                    "Refrigerator has an invalid ingredient entry.",
+                    this
+                );
+
+                return;
+            }
 
             IngredientInstance ingredient =
-                CreateIngredient(definition);
+                InstantiateIngredient(entry);
+
+            if (ingredient == null)
+            {
+                return;
+            }
 
             if (!player.Inventory.TryPickup(ingredient))
             {
@@ -41,23 +70,34 @@ namespace YesChef.Stations
             }
         }
 
-        private IngredientInstance CreateIngredient(
-     IngredientDefinition definition)
+        private IngredientEntry GetRandomIngredient()
         {
-            GameObject ingredientObject =
-                new GameObject(definition.Type.ToString());
+            return ingredients[
+                Random.Range(0, ingredients.Length)
+            ];
+        }
 
-            IngredientInstance instance =
-                ingredientObject.AddComponent<IngredientInstance>();
+        private IngredientInstance InstantiateIngredient(
+            IngredientEntry entry)
+        {
+            Vector3 position = spawnPoint != null
+                ? spawnPoint.position
+                : transform.position;
 
-            instance.Initialize(definition);
+            Quaternion rotation = spawnPoint != null
+                ? spawnPoint.rotation
+                : Quaternion.identity;
 
-            ingredientObject.transform.position =
-                spawnPoint != null
-                    ? spawnPoint.position
-                    : transform.position;
+            IngredientInstance ingredient =
+                Instantiate(
+                    entry.prefab,
+                    position,
+                    rotation
+                );
 
-            return instance;
+            ingredient.Initialize(entry.definition);
+
+            return ingredient;
         }
     }
 }
