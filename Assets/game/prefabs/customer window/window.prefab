@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3054058402146578202}
-  m_Layer: 0
+  - component: {fileID: 86500519307187648}
+  - component: {fileID: 933916161038186834}
+  m_Layer: 6
   m_Name: p2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +33,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2802017264213340614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &86500519307187648
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329764431757638283}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &933916161038186834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329764431757638283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eae6123e01369741be47937db28f689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YesChef.Orders.CustomerWindowPoint
+  customerWall: {fileID: 3253141105123133943}
+  windowIndex: 1
 --- !u!1 &1327005299724194405
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +77,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476296676005985184}
-  m_Layer: 0
+  - component: {fileID: 6789584575473241529}
+  - component: {fileID: 2253571573583088388}
+  m_Layer: 6
   m_Name: p3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,6 +101,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2802017264213340614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6789584575473241529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327005299724194405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eae6123e01369741be47937db28f689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YesChef.Orders.CustomerWindowPoint
+  customerWall: {fileID: 3253141105123133943}
+  windowIndex: 2
+--- !u!65 &2253571573583088388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327005299724194405}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3022518618712948863
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +221,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 504049357482265246}
-  m_Layer: 0
+  - component: {fileID: 584973280573209517}
+  - component: {fileID: 8215453275125957022}
+  m_Layer: 6
   m_Name: p4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,6 +245,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2802017264213340614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &584973280573209517
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277086204812457872}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8215453275125957022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277086204812457872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eae6123e01369741be47937db28f689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YesChef.Orders.CustomerWindowPoint
+  customerWall: {fileID: 3253141105123133943}
+  windowIndex: 3
 --- !u!1 &5661886064064901321
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +289,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 654461753548273480}
-  m_Layer: 0
+  - component: {fileID: 4766844101572321739}
+  - component: {fileID: 6149263041447549139}
+  m_Layer: 6
   m_Name: p1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,6 +313,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2802017264213340614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4766844101572321739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661886064064901321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eae6123e01369741be47937db28f689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YesChef.Orders.CustomerWindowPoint
+  customerWall: {fileID: 3253141105123133943}
+  windowIndex: 0
+--- !u!65 &6149263041447549139
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661886064064901321}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3561459232350026222
 PrefabInstance:
   m_ObjectHideFlags: 0

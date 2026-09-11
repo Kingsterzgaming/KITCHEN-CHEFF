@@ -2,11 +2,10 @@ using System;
 using UnityEngine;
 using YesChef.Ingredients;
 using YesChef.Player;
-using YesChef.Stations;
 
 namespace YesChef.Orders
 {
-    public class CustomerWindow : MonoBehaviour, IInteractable
+    public class CustomerWindow : MonoBehaviour
     {
         [Serializable]
         private class WindowPoint
@@ -32,14 +31,17 @@ namespace YesChef.Orders
 
         [Header("Customer Windows")]
         [SerializeField]
-        private WindowPoint[] windows =
-            new WindowPoint[4];
+        private WindowPoint[] windows = new WindowPoint[4];
 
         public int WindowCount =>
             windows != null ? windows.Length : 0;
 
         public event Action<CustomerWindow, int, Order>
             OrderCompleted;
+
+        // --------------------------------------------------
+        // ORDER MANAGEMENT
+        // --------------------------------------------------
 
         public void SetOrder(int windowIndex, Order order)
         {
@@ -83,6 +85,10 @@ namespace YesChef.Orders
             return windows[windowIndex].Point;
         }
 
+        // --------------------------------------------------
+        // ORDER PROGRESS
+        // --------------------------------------------------
+
         public int GetCompletedCount(int windowIndex)
         {
             Order order = GetOrder(windowIndex);
@@ -104,47 +110,44 @@ namespace YesChef.Orders
                    order.DeliveredIngredients.Count;
         }
 
-        public bool CanInteract(PlayerController player)
+        // --------------------------------------------------
+        // WINDOW-SPECIFIC INTERACTION
+        // --------------------------------------------------
+
+        public bool CanInteract(
+            PlayerController player,
+            int windowIndex)
         {
             if (player == null)
+                return false;
+
+            if (!IsValidIndex(windowIndex))
                 return false;
 
             if (!player.Inventory.HasIngredient)
                 return false;
 
-            int windowIndex =
-                GetClosestWindow(player);
-
-            if (windowIndex == -1)
-                return false;
-
             Order order =
                 windows[windowIndex].CurrentOrder;
 
             if (order == null)
                 return false;
 
-            return order.CanAccept(
-                player.Inventory.HeldIngredient
-            );
+            IngredientInstance ingredient =
+                player.Inventory.HeldIngredient;
+
+            return order.CanAccept(ingredient);
         }
 
-        public void Interact(PlayerController player)
+        public void Interact(
+            PlayerController player,
+            int windowIndex)
         {
-            if (!CanInteract(player))
-                return;
-
-            int windowIndex =
-                GetClosestWindow(player);
-
-            if (windowIndex == -1)
+            if (!CanInteract(player, windowIndex))
                 return;
 
             Order order =
                 windows[windowIndex].CurrentOrder;
-
-            if (order == null)
-                return;
 
             IngredientInstance ingredient =
                 player.Inventory.HeldIngredient;
@@ -166,43 +169,9 @@ namespace YesChef.Orders
             );
         }
 
-        private int GetClosestWindow(
-            PlayerController player)
-        {
-            if (windows == null ||
-                windows.Length == 0)
-            {
-                return -1;
-            }
-
-            int closestIndex = -1;
-            float closestDistance = float.MaxValue;
-
-            for (int i = 0; i < windows.Length; i++)
-            {
-                WindowPoint window = windows[i];
-
-                if (window == null ||
-                    window.Point == null)
-                {
-                    continue;
-                }
-
-                float distance =
-                    Vector3.Distance(
-                        player.transform.position,
-                        window.Point.position
-                    );
-
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestIndex = i;
-                }
-            }
-
-            return closestIndex;
-        }
+        // --------------------------------------------------
+        // VALIDATION
+        // --------------------------------------------------
 
         private bool IsValidIndex(int index)
         {
