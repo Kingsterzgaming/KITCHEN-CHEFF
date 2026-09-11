@@ -1,32 +1,52 @@
 using UnityEngine;
+using YesChef.Core;
 using YesChef.Stations;
 
 namespace YesChef.Player
 {
     [RequireComponent(typeof(PlayerInventory))]
+    [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
         [Header("Movement")]
-        [SerializeField]
-        private float moveSpeed = 5f;
+        [SerializeField] private float moveSpeed = 5f;
 
         [Header("Interaction")]
-        [SerializeField]
-        private float interactionRange = 1.5f;
+        [SerializeField] private float interactionRange = 1.5f;
+        [SerializeField] private LayerMask interactableLayer;
 
-        [SerializeField]
-        private LayerMask interactableLayer;
+        [Header("Session")]
+        [SerializeField] private GameSession gameSession;
 
         private PlayerInventory inventory;
+        private CharacterController characterController;
+
         private IInteractable currentInteractable;
+
+        public PlayerInventory Inventory => inventory;
+
+        public bool HasInteractable =>
+            currentInteractable != null;
+
+        public IInteractable CurrentInteractable =>
+            currentInteractable;
 
         private void Awake()
         {
             inventory = GetComponent<PlayerInventory>();
+            characterController =
+                GetComponent<CharacterController>();
         }
 
         private void Update()
         {
+            if (gameSession != null &&
+                !gameSession.IsPlaying)
+            {
+                currentInteractable = null;
+                return;
+            }
+
             HandleMovement();
             DetectInteractable();
             HandleInteraction();
@@ -34,17 +54,29 @@ namespace YesChef.Player
 
         private void HandleMovement()
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
+            float horizontal =
+                Input.GetAxisRaw("Horizontal");
 
-            Vector3 movement = new Vector3(horizontal, 0f, vertical);
+            float vertical =
+                Input.GetAxisRaw("Vertical");
+
+            Vector3 movement =
+                new Vector3(
+                    horizontal,
+                    0f,
+                    vertical
+                );
 
             if (movement.sqrMagnitude > 1f)
             {
                 movement.Normalize();
             }
 
-            transform.position += movement * moveSpeed * Time.deltaTime;
+            characterController.Move(
+                movement *
+                moveSpeed *
+                Time.deltaTime
+            );
 
             if (movement.sqrMagnitude > 0.01f)
             {
@@ -56,13 +88,15 @@ namespace YesChef.Player
         {
             currentInteractable = null;
 
-            Collider[] colliders = Physics.OverlapSphere(
-                transform.position,
-                interactionRange,
-                interactableLayer
-            );
+            Collider[] colliders =
+                Physics.OverlapSphere(
+                    transform.position,
+                    interactionRange,
+                    interactableLayer
+                );
 
-            float closestDistance = float.MaxValue;
+            float closestDistance =
+                float.MaxValue;
 
             foreach (Collider collider in colliders)
             {
@@ -70,18 +104,22 @@ namespace YesChef.Player
                     collider.GetComponentInParent<IInteractable>();
 
                 if (interactable == null)
-                {
                     continue;
-                }
 
                 float distance =
-                    Vector3.Distance(transform.position, collider.transform.position);
+                    Vector3.Distance(
+                        transform.position,
+                        collider.ClosestPoint(
+                            transform.position
+                        )
+                    );
 
                 if (distance < closestDistance &&
                     interactable.CanInteract(this))
                 {
                     closestDistance = distance;
-                    currentInteractable = interactable;
+                    currentInteractable =
+                        interactable;
                 }
             }
         }
@@ -89,9 +127,7 @@ namespace YesChef.Player
         private void HandleInteraction()
         {
             if (currentInteractable == null)
-            {
                 return;
-            }
 
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -99,12 +135,14 @@ namespace YesChef.Player
             }
         }
 
-        public PlayerInventory Inventory => inventory;
-
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, interactionRange);
+
+            Gizmos.DrawWireSphere(
+                transform.position,
+                interactionRange
+            );
         }
     }
 }

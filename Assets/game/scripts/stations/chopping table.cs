@@ -90,9 +90,10 @@ namespace YesChef.Stations
         private void Update()
         {
             if (!IsBusy || remainingTime <= 0f)
-            {
                 return;
-            }
+
+            if (Time.timeScale <= 0f)
+                return;
 
             remainingTime -= Time.deltaTime;
 
@@ -102,7 +103,6 @@ namespace YesChef.Stations
                 currentIngredient.Prepare();
             }
         }
-
         private void CollectIngredient(PlayerController player)
         {
             if (currentIngredient == null)

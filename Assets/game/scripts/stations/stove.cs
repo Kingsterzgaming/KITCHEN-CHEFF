@@ -113,12 +113,13 @@ namespace YesChef.Stations
 
         private void Update()
         {
+            if (Time.timeScale <= 0f)
+                return;
+
             foreach (CookingSlot slot in slots)
             {
                 if (slot != null)
-                {
                     slot.Process(Time.deltaTime);
-                }
             }
         }
 

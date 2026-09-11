@@ -83,6 +83,8 @@ namespace YesChef.Core
 
             gameTimer.PauseTimer();
 
+            Time.timeScale = 0f;
+
             SessionPaused?.Invoke();
         }
 
@@ -90,6 +92,8 @@ namespace YesChef.Core
         {
             if (currentState != SessionState.Paused)
                 return;
+
+            Time.timeScale = 1f;
 
             currentState = SessionState.Playing;
 
@@ -103,6 +107,8 @@ namespace YesChef.Core
             if (currentState == SessionState.Finished)
                 return;
 
+            Time.timeScale = 1f;
+
             currentState = SessionState.Finished;
 
             gameTimer.PauseTimer();
@@ -112,6 +118,8 @@ namespace YesChef.Core
 
         public void ResetSession()
         {
+            Time.timeScale = 1f;
+
             if (gameTimer != null)
             {
                 gameTimer.ResetTimer();
@@ -124,5 +132,7 @@ namespace YesChef.Core
         {
             EndSession();
         }
+
+
     }
 }
