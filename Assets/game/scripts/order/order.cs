@@ -9,7 +9,7 @@ namespace YesChef.Orders
     {
         private readonly List<IngredientType> requiredIngredients;
         private readonly List<IngredientType> deliveredIngredients;
-
+     
         private readonly float creationTime;
 
         public IReadOnlyList<IngredientType> RequiredIngredients =>
@@ -26,6 +26,9 @@ namespace YesChef.Orders
 
         public float OpenDuration =>
             Time.time - creationTime;
+
+        public int ElapsedSeconds =>
+           Mathf.FloorToInt(OpenDuration);
 
         public Order(List<IngredientType> ingredients)
         {
