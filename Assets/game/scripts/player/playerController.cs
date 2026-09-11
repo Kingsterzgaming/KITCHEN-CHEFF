@@ -6,6 +6,7 @@ namespace YesChef.Player
 {
     [RequireComponent(typeof(PlayerInventory))]
     [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(PlayerInputHandler))]
     public class PlayerController : MonoBehaviour
     {
         [Header("Movement")]
@@ -20,6 +21,7 @@ namespace YesChef.Player
 
         private PlayerInventory inventory;
         private CharacterController characterController;
+        private PlayerInputHandler inputHandler;
 
         private IInteractable currentInteractable;
 
@@ -34,8 +36,8 @@ namespace YesChef.Player
         private void Awake()
         {
             inventory = GetComponent<PlayerInventory>();
-            characterController =
-                GetComponent<CharacterController>();
+            characterController = GetComponent<CharacterController>();
+            inputHandler = GetComponent<PlayerInputHandler>();
         }
 
         private void Update()
@@ -54,23 +56,17 @@ namespace YesChef.Player
 
         private void HandleMovement()
         {
-            float horizontal =
-                Input.GetAxisRaw("Horizontal");
-
-            float vertical =
-                Input.GetAxisRaw("Vertical");
+            Vector2 input = inputHandler.MoveInput;
 
             Vector3 movement =
                 new Vector3(
-                    horizontal,
+                    input.x,
                     0f,
-                    vertical
+                    input.y
                 );
 
             if (movement.sqrMagnitude > 1f)
-            {
                 movement.Normalize();
-            }
 
             characterController.Move(
                 movement *
@@ -118,8 +114,7 @@ namespace YesChef.Player
                     interactable.CanInteract(this))
                 {
                     closestDistance = distance;
-                    currentInteractable =
-                        interactable;
+                    currentInteractable = interactable;
                 }
             }
         }
@@ -129,7 +124,7 @@ namespace YesChef.Player
             if (currentInteractable == null)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (inputHandler.ConsumeInteractPressed())
             {
                 currentInteractable.Interact(this);
             }

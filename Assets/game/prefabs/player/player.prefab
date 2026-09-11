@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2802017264213340614}
-  - component: {fileID: 3995203904993061808}
   - component: {fileID: 8528251855390863598}
   - component: {fileID: 1858685017310915219}
   - component: {fileID: 6498390942009174684}
+  - component: {fileID: 363027160860749525}
+  - component: {fileID: 7703007005300945773}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -37,19 +38,6 @@ Transform:
   - {fileID: 116660848449667099}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3995203904993061808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3022518618712948863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ad7a56e04d9e141a85ec0ee12f5204, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YesChef.Player.PlayerInventory
-  handPoint: {fileID: 0}
 --- !u!114 &8528251855390863598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +55,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 0
+  gameSession: {fileID: 0}
 --- !u!114 &1858685017310915219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,12 +86,51 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!143 &363027160860749525
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022518618712948863}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.4
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7703007005300945773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022518618712948863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa2a2649e0c8a34197d157d8bf6eaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YesChef.Player.PlayerInputHandler
+  moveAction: {fileID: 5649067055872213188, guid: f572a72bc2a473c4fb251b8c9473b4e3, type: 3}
+  interactAction: {fileID: -6046630077015145062, guid: f572a72bc2a473c4fb251b8c9473b4e3, type: 3}
 --- !u!1 &4178556711321906292
 GameObject:
   m_ObjectHideFlags: 0
