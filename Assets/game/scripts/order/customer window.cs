@@ -75,6 +75,35 @@ namespace YesChef.Orders
             return windows[windowIndex].CurrentOrder;
         }
 
+        public Transform GetWindowPoint(int windowIndex)
+        {
+            if (!IsValidIndex(windowIndex))
+                return null;
+
+            return windows[windowIndex].Point;
+        }
+
+        public int GetCompletedCount(int windowIndex)
+        {
+            Order order = GetOrder(windowIndex);
+
+            if (order == null)
+                return 0;
+
+            return order.DeliveredIngredients.Count;
+        }
+
+        public int GetRemainingCount(int windowIndex)
+        {
+            Order order = GetOrder(windowIndex);
+
+            if (order == null)
+                return 0;
+
+            return order.RequiredIngredients.Count -
+                   order.DeliveredIngredients.Count;
+        }
+
         public bool CanInteract(PlayerController player)
         {
             if (player == null)
