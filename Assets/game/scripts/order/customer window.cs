@@ -35,14 +35,26 @@ namespace YesChef.Orders
         private WindowPoint[] windows =
             new WindowPoint[4];
 
-        public int WindowCount => windows.Length;
+        public int WindowCount =>
+            windows != null ? windows.Length : 0;
 
-        public event Action<CustomerWindow, int, Order> OrderCompleted;
+        public event Action<CustomerWindow, int, Order>
+            OrderCompleted;
 
         public void SetOrder(int windowIndex, Order order)
         {
             if (!IsValidIndex(windowIndex))
                 return;
+
+            if (order == null)
+            {
+                Debug.LogWarning(
+                    $"Cannot assign a null order to window {windowIndex}.",
+                    this
+                );
+
+                return;
+            }
 
             windows[windowIndex].SetOrder(order);
         }
@@ -71,12 +83,14 @@ namespace YesChef.Orders
             if (!player.Inventory.HasIngredient)
                 return false;
 
-            int windowIndex = GetClosestWindow(player);
+            int windowIndex =
+                GetClosestWindow(player);
 
             if (windowIndex == -1)
                 return false;
 
-            Order order = windows[windowIndex].CurrentOrder;
+            Order order =
+                windows[windowIndex].CurrentOrder;
 
             if (order == null)
                 return false;
@@ -91,14 +105,14 @@ namespace YesChef.Orders
             if (!CanInteract(player))
                 return;
 
-            int windowIndex = GetClosestWindow(player);
+            int windowIndex =
+                GetClosestWindow(player);
 
             if (windowIndex == -1)
                 return;
 
-            WindowPoint window = windows[windowIndex];
-
-            Order order = window.CurrentOrder;
+            Order order =
+                windows[windowIndex].CurrentOrder;
 
             if (order == null)
                 return;
@@ -113,20 +127,24 @@ namespace YesChef.Orders
 
             Destroy(ingredient.gameObject);
 
-            if (order.IsComplete)
-            {
-                OrderCompleted?.Invoke(
-                    this,
-                    windowIndex,
-                    order
-                );
-            }
+            if (!order.IsComplete)
+                return;
+
+            OrderCompleted?.Invoke(
+                this,
+                windowIndex,
+                order
+            );
         }
 
-        private int GetClosestWindow(PlayerController player)
+        private int GetClosestWindow(
+            PlayerController player)
         {
-            if (windows == null || windows.Length == 0)
+            if (windows == null ||
+                windows.Length == 0)
+            {
                 return -1;
+            }
 
             int closestIndex = -1;
             float closestDistance = float.MaxValue;
@@ -135,8 +153,11 @@ namespace YesChef.Orders
             {
                 WindowPoint window = windows[i];
 
-                if (window == null || window.Point == null)
+                if (window == null ||
+                    window.Point == null)
+                {
                     continue;
+                }
 
                 float distance =
                     Vector3.Distance(

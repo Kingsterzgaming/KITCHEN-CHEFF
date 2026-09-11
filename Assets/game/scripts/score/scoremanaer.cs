@@ -7,15 +7,45 @@ namespace YesChef.Core
 {
     public class ScoreManager : MonoBehaviour
     {
+        [Header("Ingredient Definitions")]
+        [SerializeField] private IngredientDefinition[] ingredientDefinitions;
+
+        [Header("Score")]
+        [SerializeField] private int currentScore;
+        [SerializeField] private CustomerWindow customerWall;
         private readonly Dictionary<IngredientType, int> scoreValues =
             new Dictionary<IngredientType, int>();
 
-        private int currentScore;
-
         public int CurrentScore => currentScore;
 
-        public void Initialize(
-            IngredientDefinition[] ingredientDefinitions)
+        private void Awake()
+        {
+            BuildScoreTable();
+        }
+
+        //private void OnEnable()
+        //{
+        //    FindAndSubscribeToOrderManager();
+        //}
+
+        //private void OnDisable()
+        //{
+        //    UnsubscribeFromOrderManager();
+        //}
+
+        private void OnEnable()
+        {
+            if (customerWall != null)
+                customerWall.OrderCompleted += HandleOrderCompleted;
+        }
+
+        private void OnDisable()
+        {
+            if (customerWall != null)
+                customerWall.OrderCompleted -= HandleOrderCompleted;
+        }
+
+        private void BuildScoreTable()
         {
             scoreValues.Clear();
 
@@ -30,6 +60,42 @@ namespace YesChef.Core
                 scoreValues[definition.Type] =
                     definition.ScoreValue;
             }
+        }
+
+        //private void FindAndSubscribeToOrderManager()
+        //{
+        //    OrderManager orderManager =
+        //        FindFirstObjectByType<OrderManager>();
+
+        //    if (orderManager == null)
+        //        return;
+
+        //    CustomerWindow customerWall =
+        //        FindFirstObjectByType<CustomerWindow>();
+
+        //    if (customerWall == null)
+        //        return;
+
+        //    customerWall.OrderCompleted += HandleOrderCompleted;
+        //}
+
+        //private void UnsubscribeFromOrderManager()
+        //{
+        //    CustomerWindow customerWall =
+        //        FindFirstObjectByType<CustomerWindow>();
+
+        //    if (customerWall == null)
+        //        return;
+
+        //    customerWall.OrderCompleted -= HandleOrderCompleted;
+        //}
+
+        private void HandleOrderCompleted(
+            CustomerWindow wall,
+            int windowIndex,
+            Order completedOrder)
+        {
+            AddOrderScore(completedOrder);
         }
 
         public int CalculateOrderScore(Order order)

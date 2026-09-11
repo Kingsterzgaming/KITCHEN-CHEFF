@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using YesChef.Core;
 
 namespace YesChef.Orders
 {
@@ -7,6 +8,7 @@ namespace YesChef.Orders
     {
         [Header("References")]
         [SerializeField] private CustomerWindow customerWall;
+        [SerializeField] private GameSession gameSession;
 
         [Header("Orders")]
         [SerializeField] private float respawnDelay = 5f;
@@ -20,6 +22,12 @@ namespace YesChef.Orders
 
         private void OnEnable()
         {
+            if (gameSession != null)
+            {
+                gameSession.SessionStarted += HandleSessionStarted;
+                gameSession.SessionFinished += HandleSessionFinished;
+            }
+
             if (customerWall != null)
             {
                 customerWall.OrderCompleted += HandleOrderCompleted;
@@ -28,15 +36,71 @@ namespace YesChef.Orders
 
         private void OnDisable()
         {
+            if (gameSession != null)
+            {
+                gameSession.SessionStarted -= HandleSessionStarted;
+                gameSession.SessionFinished -= HandleSessionFinished;
+            }
+
             if (customerWall != null)
             {
                 customerWall.OrderCompleted -= HandleOrderCompleted;
             }
         }
 
-        private void Start()
+        private void HandleSessionStarted()
         {
+            StopAllCoroutines();
+
+            ClearAllOrders();
             GenerateInitialOrders();
+        }
+
+        private void HandleSessionFinished()
+        {
+            StopAllCoroutines();
+
+            ClearAllOrders();
+        }
+
+        private void HandleOrderCompleted(
+            CustomerWindow wall,
+            int windowIndex,
+            Order completedOrder)
+        {
+            if (gameSession == null ||
+                !gameSession.IsPlaying)
+            {
+                return;
+            }
+
+            StartCoroutine(
+                RespawnOrder(windowIndex)
+            );
+        }
+
+        private IEnumerator RespawnOrder(
+            int windowIndex)
+        {
+            customerWall.ClearOrder(windowIndex);
+
+            yield return new WaitForSeconds(
+                respawnDelay
+            );
+
+            if (gameSession == null ||
+                !gameSession.IsPlaying)
+            {
+                yield break;
+            }
+
+            Order newOrder =
+                orderGenerator.GenerateOrder();
+
+            customerWall.SetOrder(
+                windowIndex,
+                newOrder
+            );
         }
 
         private void GenerateInitialOrders()
@@ -51,37 +115,28 @@ namespace YesChef.Orders
                 return;
             }
 
-            for (int i = 0; i < customerWall.WindowCount; i++)
+            for (int i = 0;
+                 i < customerWall.WindowCount;
+                 i++)
             {
-                Order order = orderGenerator.GenerateOrder();
+                Order order =
+                    orderGenerator.GenerateOrder();
 
                 customerWall.SetOrder(i, order);
             }
         }
 
-        private void HandleOrderCompleted(
-            CustomerWindow wall,
-            int windowIndex,
-            Order completedOrder)
+        private void ClearAllOrders()
         {
-            StartCoroutine(
-                RespawnOrder(windowIndex)
-            );
-        }
+            if (customerWall == null)
+                return;
 
-        private IEnumerator RespawnOrder(int windowIndex)
-        {
-            customerWall.ClearOrder(windowIndex);
-
-            yield return new WaitForSeconds(respawnDelay);
-
-            Order newOrder =
-                orderGenerator.GenerateOrder();
-
-            customerWall.SetOrder(
-                windowIndex,
-                newOrder
-            );
+            for (int i = 0;
+                 i < customerWall.WindowCount;
+                 i++)
+            {
+                customerWall.ClearOrder(i);
+            }
         }
     }
 }
