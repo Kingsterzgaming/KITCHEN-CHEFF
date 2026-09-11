@@ -7,6 +7,7 @@ namespace YesChef.UI
     public class SessionEndUI : MonoBehaviour
     {
         [Header("References")]
+        [SerializeField] private GameManager gameManager;
         [SerializeField] private GameSession gameSession;
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private HighScoreManager highScoreManager;
@@ -20,19 +21,13 @@ namespace YesChef.UI
         private void OnEnable()
         {
             if (gameSession != null)
-            {
-                gameSession.SessionFinished +=
-                    HandleSessionFinished;
-            }
+                gameSession.SessionFinished += HandleSessionFinished;
         }
 
         private void OnDisable()
         {
             if (gameSession != null)
-            {
-                gameSession.SessionFinished -=
-                    HandleSessionFinished;
-            }
+                gameSession.SessionFinished -= HandleSessionFinished;
         }
 
         private void Start()
@@ -75,8 +70,7 @@ namespace YesChef.UI
             if (newHighScoreText != null)
             {
                 bool isNewHighScore =
-                    finalScore > 0 &&
-                    finalScore >= highScore;
+                    finalScore > highScore;
 
                 newHighScoreText.gameObject.SetActive(
                     isNewHighScore
@@ -90,19 +84,24 @@ namespace YesChef.UI
         {
             HidePanel();
 
-            if (gameSession == null)
-                return;
+            if (gameManager == null)
+            {
+                Debug.LogError(
+                    "SessionEndUI: GameManager is not assigned.",
+                    this
+                );
 
-            gameSession.ResetSession();
-            gameSession.StartSession();
+                return;
+            }
+
+            gameManager.ResetGame();
+            gameManager.StartGame();
         }
 
         public void HidePanel()
         {
             if (endPanel != null)
-            {
                 endPanel.SetActive(false);
-            }
         }
     }
 }

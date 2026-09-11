@@ -54,6 +54,36 @@ namespace YesChef.Player
             HandleInteraction();
         }
 
+        //private void HandleMovement()
+        //{
+        //    Vector2 input = inputHandler.MoveInput;
+
+        //    Vector3 movement =
+        //        new Vector3(
+        //            input.x,
+        //            0f,
+        //            input.y
+        //        );
+
+        //    if (movement.sqrMagnitude > 1f)
+        //        movement.Normalize();
+
+        //    characterController.Move(
+        //        movement *
+        //        moveSpeed *
+        //        Time.deltaTime
+        //    );
+
+        //    if (movement.sqrMagnitude > 0.01f)
+        //    {
+        //        transform.forward = movement;
+        //    }
+        //}
+        [Header("Gravity")]
+        [SerializeField] private float gravity = -20f;
+
+        private float verticalVelocity;
+
         private void HandleMovement()
         {
             Vector2 input = inputHandler.MoveInput;
@@ -68,17 +98,36 @@ namespace YesChef.Player
             if (movement.sqrMagnitude > 1f)
                 movement.Normalize();
 
+            if (characterController.isGrounded)
+            {
+                verticalVelocity = -2f;
+            }
+            else
+            {
+                verticalVelocity += gravity * Time.deltaTime;
+            }
+
+            movement.y = verticalVelocity;
+
             characterController.Move(
-                movement *
-                moveSpeed *
-                Time.deltaTime
+                movement * Time.deltaTime
             );
 
-            if (movement.sqrMagnitude > 0.01f)
+            if (movement.x != 0f || movement.z != 0f)
             {
-                transform.forward = movement;
+                Vector3 facingDirection =
+                    new Vector3(
+                        movement.x,
+                        0f,
+                        movement.z
+                    );
+
+                transform.forward =
+                    facingDirection.normalized;
             }
         }
+
+
 
         private void DetectInteractable()
         {
