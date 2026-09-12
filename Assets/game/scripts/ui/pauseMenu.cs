@@ -47,10 +47,10 @@ namespace YesChef.UI
             if (pauseAction == null)
                 return;
 
-            if (!pauseAction.action.WasPressedThisFrame())
-                return;
-
-            TogglePause();
+            if (pauseAction.action.WasPressedThisFrame())
+            {
+                TogglePause();
+            }
         }
 
         public void TogglePause()
@@ -62,9 +62,13 @@ namespace YesChef.UI
                 return;
 
             if (gameSession.IsPlaying)
+            {
                 PauseGame();
+            }
             else if (gameSession.IsPaused)
+            {
                 ResumeGame();
+            }
         }
 
         public void PauseGame()

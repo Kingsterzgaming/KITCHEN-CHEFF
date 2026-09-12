@@ -50,10 +50,25 @@ namespace YesChef.UI
                     ? scoreManager.CurrentScore
                     : 0;
 
-            int highScore =
+            int previousHighScore =
                 highScoreManager != null
                     ? highScoreManager.HighScore
                     : 0;
+
+            bool isNewHighScore =
+                finalScore > previousHighScore;
+
+            if (gameManager != null)
+            {
+                gameManager.HighScoreManager.TrySetHighScore(
+                    finalScore
+                );
+            }
+
+            int currentHighScore =
+                highScoreManager != null
+                    ? highScoreManager.HighScore
+                    : finalScore;
 
             if (finalScoreText != null)
             {
@@ -64,14 +79,11 @@ namespace YesChef.UI
             if (highScoreText != null)
             {
                 highScoreText.text =
-                    $"High Score: {highScore}";
+                    $"High Score: {currentHighScore}";
             }
 
             if (newHighScoreText != null)
             {
-                bool isNewHighScore =
-                    finalScore > highScore;
-
                 newHighScoreText.gameObject.SetActive(
                     isNewHighScore
                 );
@@ -96,6 +108,15 @@ namespace YesChef.UI
 
             gameManager.ResetGame();
             gameManager.StartGame();
+        }
+
+        public void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
 
         public void HidePanel()

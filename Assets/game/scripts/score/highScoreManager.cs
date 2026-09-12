@@ -9,6 +9,11 @@ namespace YesChef.Core
         public int HighScore =>
             PlayerPrefs.GetInt(HighScoreKey, 0);
 
+        public bool IsNewHighScore(int score)
+        {
+            return score > HighScore;
+        }
+
         public bool TrySetHighScore(int score)
         {
             if (score <= HighScore)

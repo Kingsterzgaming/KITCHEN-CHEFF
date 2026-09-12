@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using YesChef.Ingredients;
 using YesChef.Orders;
-
+using YesChef.Core;
 namespace YesChef.UI
 {
     public class OrderUI : MonoBehaviour
@@ -22,6 +22,8 @@ namespace YesChef.UI
         [SerializeField] private Sprite vegetableSprite;
         [SerializeField] private Sprite cheeseSprite;
         [SerializeField] private Sprite meatSprite;
+        [Header("Session")]
+        [SerializeField] private GameSession gameSession;
 
         private void Update()
         {
