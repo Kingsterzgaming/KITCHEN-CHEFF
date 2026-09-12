@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using YesChef.Core;
 
 namespace YesChef.UI
@@ -7,6 +8,7 @@ namespace YesChef.UI
     {
         [Header("References")]
         [SerializeField] private GameSession gameSession;
+        [SerializeField] private InputActionReference pauseAction;
 
         [Header("UI")]
         [SerializeField] private GameObject pausePanel;
@@ -18,6 +20,9 @@ namespace YesChef.UI
                 gameSession.SessionStarted += HandleSessionStarted;
                 gameSession.SessionFinished += HandleSessionFinished;
             }
+
+            if (pauseAction != null)
+                pauseAction.action.Enable();
         }
 
         private void OnDisable()
@@ -27,6 +32,9 @@ namespace YesChef.UI
                 gameSession.SessionStarted -= HandleSessionStarted;
                 gameSession.SessionFinished -= HandleSessionFinished;
             }
+
+            if (pauseAction != null)
+                pauseAction.action.Disable();
         }
 
         private void Start()
@@ -36,10 +44,13 @@ namespace YesChef.UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                TogglePause();
-            }
+            if (pauseAction == null)
+                return;
+
+            if (!pauseAction.action.WasPressedThisFrame())
+                return;
+
+            TogglePause();
         }
 
         public void TogglePause()
@@ -51,13 +62,9 @@ namespace YesChef.UI
                 return;
 
             if (gameSession.IsPlaying)
-            {
                 PauseGame();
-            }
             else if (gameSession.IsPaused)
-            {
                 ResumeGame();
-            }
         }
 
         public void PauseGame()
@@ -109,17 +116,13 @@ namespace YesChef.UI
         private void ShowPauseMenu()
         {
             if (pausePanel != null)
-            {
                 pausePanel.SetActive(true);
-            }
         }
 
         private void HidePauseMenu()
         {
             if (pausePanel != null)
-            {
                 pausePanel.SetActive(false);
-            }
         }
     }
 }

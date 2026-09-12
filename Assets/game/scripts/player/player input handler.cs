@@ -8,6 +8,7 @@ namespace YesChef.Player
         [Header("Input Actions")]
         [SerializeField] private InputActionReference moveAction;
         [SerializeField] private InputActionReference interactAction;
+        [SerializeField] private InputActionReference pauseAction;
 
         public Vector2 MoveInput
         {
@@ -24,12 +25,14 @@ namespace YesChef.Player
         {
             EnableAction(moveAction);
             EnableAction(interactAction);
+            EnableAction(pauseAction);
         }
 
         private void OnDisable()
         {
             DisableAction(moveAction);
             DisableAction(interactAction);
+            DisableAction(pauseAction);
         }
 
         public bool ConsumeInteractPressed()
@@ -38,6 +41,14 @@ namespace YesChef.Player
                 return false;
 
             return interactAction.action.WasPressedThisFrame();
+        }
+
+        public bool ConsumePausePressed()
+        {
+            if (pauseAction == null)
+                return false;
+
+            return pauseAction.action.WasPressedThisFrame();
         }
 
         private void EnableAction(
