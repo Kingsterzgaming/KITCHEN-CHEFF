@@ -110,8 +110,8 @@ namespace YesChef.Player
             movement.y = verticalVelocity;
 
             characterController.Move(
-                movement * Time.deltaTime
-            );
+            movement * moveSpeed * Time.deltaTime
+             );
 
             if (movement.x != 0f || movement.z != 0f)
             {
