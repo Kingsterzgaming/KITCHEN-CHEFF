@@ -3159,6 +3159,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 700340522933191570, guid: cea24b5b0ec563e4fb5c476ede1a6f00, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8884850faa9f680409dbc20298932e10, type: 2}
     - target: {fileID: 1241554931813591290, guid: cea24b5b0ec563e4fb5c476ede1a6f00, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3637,6 +3641,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &912551539 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3471262385059104093, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &929462858
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,6 +3791,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1251441101963989957, guid: 29b658759817a724a9250462146126e6, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251441101963989957, guid: 29b658759817a724a9250462146126e6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ebef308bbe823f468b803ccc7f03d79, type: 2}
+    - target: {fileID: 1251441101963989957, guid: 29b658759817a724a9250462146126e6, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 2802017264213340614, guid: 29b658759817a724a9250462146126e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.2
@@ -3820,6 +3847,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2838520381711696072, guid: 29b658759817a724a9250462146126e6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af31611b24d58f34494fdcaddec14abc, type: 2}
     - target: {fileID: 3022518618712948863, guid: 29b658759817a724a9250462146126e6, type: 3}
       propertyPath: m_Name
       value: stove
@@ -4513,6 +4544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: trash
       objectReference: {fileID: 0}
+    - target: {fileID: 5541315845792531543, guid: 1e3f0e1e36af0d0478165f0a37b4012f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bda825603b7a8744cab278b1dfdc811a, type: 2}
     - target: {fileID: 6333830289715537282, guid: 1e3f0e1e36af0d0478165f0a37b4012f, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -6706,6 +6741,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 553509272058117354, guid: f43afc74a2a5a474f870a10806c954dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ebef308bbe823f468b803ccc7f03d79, type: 2}
     - target: {fileID: 1361039663252849798, guid: f43afc74a2a5a474f870a10806c954dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 64.56
@@ -6810,6 +6849,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8973387090690878466, guid: f43afc74a2a5a474f870a10806c954dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af31611b24d58f34494fdcaddec14abc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7207,7 +7250,7 @@ PrefabInstance:
       objectReference: {fileID: 1002263280}
     - target: {fileID: 8528251855390863598, guid: 71dc7d8bd3547884d86ab03eb306750d, type: 3}
       propertyPath: interactionRange
-      value: 17.6
+      value: 24.6
       objectReference: {fileID: 0}
     - target: {fileID: 8528251855390863598, guid: 71dc7d8bd3547884d86ab03eb306750d, type: 3}
       propertyPath: interactableLayer.m_Bits
@@ -7637,6 +7680,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985475771}
   m_CullTransparentMesh: 1
+--- !u!114 &1999738168 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3438338440957033431, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &2036550210
 GameObject:
   m_ObjectHideFlags: 0
@@ -7906,6 +7960,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: order 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3247794325326686553, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 912551539}
     - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
       propertyPath: meatSprite
       value: 
@@ -7926,6 +7984,26 @@ PrefabInstance:
       propertyPath: vegetableSprite
       value: 
       objectReference: {fileID: 21300000, guid: f1ce9b812a8150d4abd85d92742325d7, type: 3}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: deliveredMeatSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 817d87291a65bc34c8b2df7f0680ef36, type: 3}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: deliveredCheeseSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c888226effee5754799db6bf457450c0, type: 3}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: deliveredVegetableSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 88eb86013d7b5a34bb9b118c105ef02c, type: 3}
+    - target: {fileID: 4471291227015678986, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 1999738168}
+    - target: {fileID: 6425320765093890881, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

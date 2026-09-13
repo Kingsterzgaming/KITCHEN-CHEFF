@@ -7,7 +7,7 @@ namespace YesChef.UI
     {
         [Header("Visuals")]
         [SerializeField] private Image iconImage;
-        [SerializeField] private GameObject deliveredOverlay;
+        [SerializeField] private Image deliveredImage;
 
         public void SetIcon(Sprite sprite)
         {
@@ -20,10 +20,11 @@ namespace YesChef.UI
 
         public void SetDelivered(bool delivered)
         {
-            if (deliveredOverlay != null)
-            {
-                deliveredOverlay.SetActive(delivered);
-            }
+            if (iconImage != null)
+                iconImage.enabled = !delivered;
+
+            if (deliveredImage != null)
+                deliveredImage.enabled = delivered;
         }
 
         public void Clear()
@@ -34,10 +35,19 @@ namespace YesChef.UI
                 iconImage.enabled = false;
             }
 
-            if (deliveredOverlay != null)
+            if (deliveredImage != null)
             {
-                deliveredOverlay.SetActive(false);
+                deliveredImage.sprite = null;
+                deliveredImage.enabled = false;
             }
+        }
+
+        public void SetDeliveredSprite(Sprite sprite)
+        {
+            if (deliveredImage == null)
+                return;
+
+            deliveredImage.sprite = sprite;
         }
     }
 }
