@@ -295,17 +295,11 @@ namespace YesChef.UI
                 IngredientType requiredType =
                     order.RequiredIngredients[i];
 
-                icon.SetIcon(
-                    GetSprite(requiredType)
-                );
-
-                icon.SetDeliveredSprite(
-                    GetDeliveredSprite(requiredType)
-                );
-
-                icon.SetDelivered(
-                    IsIngredientDelivered(order, i)
-                );
+                icon.Show(
+             GetSprite(requiredType),
+             GetDeliveredSprite(requiredType),
+             IsIngredientDelivered(order, i)
+             );
             }
         }
 

@@ -9,22 +9,24 @@ namespace YesChef.UI
         [SerializeField] private Image iconImage;
         [SerializeField] private Image deliveredImage;
 
-        public void SetIcon(Sprite sprite)
-        {
-            if (iconImage == null)
-                return;
-
-            iconImage.sprite = sprite;
-            iconImage.enabled = sprite != null;
-        }
-
-        public void SetDelivered(bool delivered)
+        public void Show(
+            Sprite normalSprite,
+            Sprite deliveredSprite,
+            bool delivered)
         {
             if (iconImage != null)
-                iconImage.enabled = !delivered;
+            {
+                iconImage.sprite = normalSprite;
+                iconImage.enabled =
+                    !delivered && normalSprite != null;
+            }
 
             if (deliveredImage != null)
-                deliveredImage.enabled = delivered;
+            {
+                deliveredImage.sprite = deliveredSprite;
+                deliveredImage.enabled =
+                    delivered && deliveredSprite != null;
+            }
         }
 
         public void Clear()
@@ -40,14 +42,6 @@ namespace YesChef.UI
                 deliveredImage.sprite = null;
                 deliveredImage.enabled = false;
             }
-        }
-
-        public void SetDeliveredSprite(Sprite sprite)
-        {
-            if (deliveredImage == null)
-                return;
-
-            deliveredImage.sprite = sprite;
         }
     }
 }

@@ -6,12 +6,15 @@ namespace YesChef.Core
     {
         private const string HighScoreKey = "YesChef.HighScore";
 
-        public int HighScore =>
-            PlayerPrefs.GetInt(HighScoreKey, 0);
-
-        public bool IsNewHighScore(int score)
+        public int HighScore
         {
-            return score > HighScore;
+            get
+            {
+                return Mathf.Max(
+                    0,
+                    PlayerPrefs.GetInt(HighScoreKey, 0)
+                );
+            }
         }
 
         public bool TrySetHighScore(int score)
@@ -19,7 +22,11 @@ namespace YesChef.Core
             if (score <= HighScore)
                 return false;
 
-            PlayerPrefs.SetInt(HighScoreKey, score);
+            PlayerPrefs.SetInt(
+                HighScoreKey,
+                score
+            );
+
             PlayerPrefs.Save();
 
             return true;

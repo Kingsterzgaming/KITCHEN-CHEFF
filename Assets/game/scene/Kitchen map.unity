@@ -1289,6 +1289,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166978066}
   m_CullTransparentMesh: 1
+--- !u!114 &196937426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7722141708521402107, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &208038907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1381,6 +1392,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: order 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2962143954160051337, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247794325326686553, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 804752175}
     - target: {fileID: 3795962237157396078, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
       propertyPath: meatSprite
       value: 
@@ -1405,6 +1424,34 @@ PrefabInstance:
       propertyPath: vegetableSprite
       value: 
       objectReference: {fileID: 21300000, guid: f1ce9b812a8150d4abd85d92742325d7, type: 3}
+    - target: {fileID: 3795962237157396078, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: deliveredMeatSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 817d87291a65bc34c8b2df7f0680ef36, type: 3}
+    - target: {fileID: 3795962237157396078, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: deliveredCheeseSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c888226effee5754799db6bf457450c0, type: 3}
+    - target: {fileID: 3795962237157396078, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: deliveredVegetableSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 88eb86013d7b5a34bb9b118c105ef02c, type: 3}
+    - target: {fileID: 4471291227015678986, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 488614066}
+    - target: {fileID: 6104953747132528748, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425320765093890881, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 1431913331}
+    - target: {fileID: 7776284360713714721, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1967,6 +2014,17 @@ Transform:
   - {fileID: 1077734072}
   m_Father: {fileID: 634088835}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488614066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3438338440957033431, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+  m_PrefabInstance: {fileID: 208038907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &519195712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,6 +2484,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571042146}
   m_CullTransparentMesh: 1
+--- !u!114 &591298161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6425320765093890881, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2d7acb85ec3b94aa9fa23a535adaf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YesChef.UI.IngredientIconUI
 --- !u!1 &600976457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,6 +2989,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653821439}
   m_CullTransparentMesh: 1
+--- !u!114 &664361870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3438338440957033431, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+  m_PrefabInstance: {fileID: 1799538530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &670395996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3147,6 +3227,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::YesChef.UI.TimerUI
   gameTimer: {fileID: 79365056}
   timerText: {fileID: 1201439341}
+--- !u!114 &804752175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8983875360374180964, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+  m_PrefabInstance: {fileID: 208038907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &822388641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3641,10 +3732,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &912551539 stripped
+--- !u!114 &864640799 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3471262385059104093, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
-  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_CorrespondingSourceObject: {fileID: 3438338440957033431, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+  m_PrefabInstance: {fileID: 1655243673}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -4025,6 +4116,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930292313}
   m_CullTransparentMesh: 1
+--- !u!114 &947402394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8562592858601251532, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &964198620
 GameObject:
   m_ObjectHideFlags: 0
@@ -4426,6 +4528,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063967630}
   m_CullTransparentMesh: 1
+--- !u!114 &1074904475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 226572294171409230, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+  m_PrefabInstance: {fileID: 1799538530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1077734071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5192,6 +5305,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1253426339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4471291227015678986, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2d7acb85ec3b94aa9fa23a535adaf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YesChef.UI.IngredientIconUI
 --- !u!1 &1268274409
 GameObject:
   m_ObjectHideFlags: 0
@@ -5700,6 +5824,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1409437256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8983875360374180964, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+  m_PrefabInstance: {fileID: 1799538530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &1431913331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 226572294171409230, guid: f42bd8fb02b1bec4e925c41253ca76bf, type: 3}
+  m_PrefabInstance: {fileID: 208038907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1511107855
 GameObject:
   m_ObjectHideFlags: 0
@@ -5886,6 +6032,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512142390}
   m_CullTransparentMesh: 1
+--- !u!114 &1525493843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 226572294171409230, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+  m_PrefabInstance: {fileID: 1655243673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1530691775
 GameObject:
   m_ObjectHideFlags: 0
@@ -6080,6 +6237,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3723706341785225858, guid: f2e09b9fe109cbb4a89aaf451809009a, type: 3}
+--- !u!114 &1627021720 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 226572294171409230, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1655243673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6172,6 +6340,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: order 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2962143954160051337, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247794325326686553, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 2049866636}
     - target: {fileID: 3795962237157396078, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
       propertyPath: meatSprite
       value: 
@@ -6196,6 +6372,34 @@ PrefabInstance:
       propertyPath: vegetableSprite
       value: 
       objectReference: {fileID: 21300000, guid: f1ce9b812a8150d4abd85d92742325d7, type: 3}
+    - target: {fileID: 3795962237157396078, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: deliveredMeatSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 817d87291a65bc34c8b2df7f0680ef36, type: 3}
+    - target: {fileID: 3795962237157396078, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: deliveredCheeseSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c888226effee5754799db6bf457450c0, type: 3}
+    - target: {fileID: 3795962237157396078, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: deliveredVegetableSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 88eb86013d7b5a34bb9b118c105ef02c, type: 3}
+    - target: {fileID: 4471291227015678986, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 864640799}
+    - target: {fileID: 6104953747132528748, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425320765093890881, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 1525493843}
+    - target: {fileID: 7776284360713714721, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6301,6 +6505,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::YesChef.UI.OrdersUI
   gameSession: {fileID: 1002263280}
   ordersPanel: {fileID: 2070423338}
+--- !u!114 &1730450532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3247794325326686553, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2d7acb85ec3b94aa9fa23a535adaf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YesChef.UI.IngredientIconUI
 --- !u!1 &1757709470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6465,6 +6680,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1789401530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8983875360374180964, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+  m_PrefabInstance: {fileID: 5316239881111514322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1799538530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6557,6 +6783,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: order 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2962143954160051337, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247794325326686553, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 1409437256}
     - target: {fileID: 3795962237157396078, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
       propertyPath: meatSprite
       value: 
@@ -6581,6 +6815,34 @@ PrefabInstance:
       propertyPath: vegetableSprite
       value: 
       objectReference: {fileID: 21300000, guid: f1ce9b812a8150d4abd85d92742325d7, type: 3}
+    - target: {fileID: 3795962237157396078, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: deliveredMeatSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 817d87291a65bc34c8b2df7f0680ef36, type: 3}
+    - target: {fileID: 3795962237157396078, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: deliveredCheeseSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c888226effee5754799db6bf457450c0, type: 3}
+    - target: {fileID: 3795962237157396078, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: deliveredVegetableSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 88eb86013d7b5a34bb9b118c105ef02c, type: 3}
+    - target: {fileID: 4471291227015678986, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 664361870}
+    - target: {fileID: 6104953747132528748, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425320765093890881, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: deliveredImage
+      value: 
+      objectReference: {fileID: 1074904475}
+    - target: {fileID: 7776284360713714721, guid: ee54b44f735fa0d4cb4fce532fc13ebb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7434,7 +7696,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948620962}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 793b97dd4487bd548b7676573dc02127, type: 3}
   m_Name: 
@@ -7490,14 +7752,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 16
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7829,6 +8091,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036550210}
   m_CullTransparentMesh: 1
+--- !u!114 &2049866636 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8983875360374180964, guid: 8ad885c572f191142831927ccf7e52f7, type: 3}
+  m_PrefabInstance: {fileID: 1655243673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &2070423338
 GameObject:
   m_ObjectHideFlags: 0
@@ -7960,10 +8233,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: order 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2962143954160051337, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3247794325326686553, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
       propertyPath: deliveredImage
       value: 
-      objectReference: {fileID: 912551539}
+      objectReference: {fileID: 1789401530}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 196937426}
     - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
       propertyPath: meatSprite
       value: 
@@ -7981,6 +8262,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1249815185}
     - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: progressText
+      value: 
+      objectReference: {fileID: 947402394}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
       propertyPath: vegetableSprite
       value: 
       objectReference: {fileID: 21300000, guid: f1ce9b812a8150d4abd85d92742325d7, type: 3}
@@ -7996,13 +8281,37 @@ PrefabInstance:
       propertyPath: deliveredVegetableSprite
       value: 
       objectReference: {fileID: 21300000, guid: 88eb86013d7b5a34bb9b118c105ef02c, type: 3}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: ingredientIcons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: 'ingredientIcons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 591298161}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: 'ingredientIcons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1253426339}
+    - target: {fileID: 3795962237157396078, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: 'ingredientIcons.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1730450532}
     - target: {fileID: 4471291227015678986, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
       propertyPath: deliveredImage
       value: 
       objectReference: {fileID: 1999738168}
+    - target: {fileID: 6104953747132528748, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6425320765093890881, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
       propertyPath: deliveredImage
       value: 
+      objectReference: {fileID: 1627021720}
+    - target: {fileID: 7776284360713714721, guid: 13545499c22eec641bbd95854a7b014a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
